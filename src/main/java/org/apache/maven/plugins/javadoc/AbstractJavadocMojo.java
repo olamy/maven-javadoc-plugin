@@ -6539,11 +6539,6 @@ public abstract class AbstractJavadocMojo
                         .append( SystemUtils.LINE_SEPARATOR );
             }
 
-            for ( String envVar : commandline.getEnvironmentVariables() )
-            {
-                cmdLine.append( envVar )
-                        .append( SystemUtils.LINE_SEPARATOR );
-            }
             cmdLine.append( CommandLineUtils.toString( commandline.getCommandline() )
                     .replaceAll( "'", "" ) )
                     .append( SystemUtils.LINE_SEPARATOR );
@@ -6555,7 +6550,7 @@ public abstract class AbstractJavadocMojo
                 Runtime.getRuntime().exec( new String[]{ "chmod", "a+x", commandLineFile.getAbsolutePath() } );
             }
         }
-        catch ( IOException | CommandLineException e )
+        catch ( IOException e )
         {
             logError( "Unable to write '" + commandLineFile.getName() + "' debug script file", e );
         }
